@@ -1,0 +1,6 @@
+  Datos profe:	
+	Usuario Profesor git: luisvelasco1920
+	Repo profe: https://github.com/luisvelasco1920/ad.git
+  Comandos utiles:
+	history: ./sirve para ver los comandos ejecutado
+	Ctrl + r: sirve paera buscar

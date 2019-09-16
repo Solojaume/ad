@@ -1,0 +1,11 @@
+20190916 jp
+    Crear usuario en GitHub:
+     - Usuario:SoloJaume
+    Crear repositorio:
+     - Nombre: ad
+     - Inicializar con README
+     - .gitignore: VisualStudio (por C#)
+     - git config --global user.email "you@example.com"
+     - git config --global user.name "Your Name"
+	
+    
