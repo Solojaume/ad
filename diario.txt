@@ -5,6 +5,7 @@
      - Nombre: ad
      - Inicializar con README
      - .gitignore: VisualStudio (por C#)
+    Configuración local:
      - git config --global user.email "you@example.com"
      - git config --global user.name "Your Name"
 	
