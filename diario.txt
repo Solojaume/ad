@@ -8,5 +8,20 @@
     Configuración local:
      - git config --global user.email "you@example.com"
      - git config --global user.name "Your Name"
+    Nuevo archivo:
+     -git add diario.txt (o git add .)
+     -git commit -m "diario.txt con detalles sobre github y git"
+     -git push (para publicar nueva versión)
+
+    Otros comandos:
+     -git log (muestra la lista de versiones)
+     -git status 
+
+
+20190920 jp
+    Creación maquina virtual:
+     -Creamos una VM en virtualbox
+     -Instalamos Ubuntu 16.04
+    Creacion de CHolaMundo en C#
 	
     
