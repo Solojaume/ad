@@ -13,7 +13,7 @@ namespace CMySql
         {
             Console.WriteLine("Acceso a dbprueba");
             dbConnection.Open();
-            //InsertValue();
+            InsertValue();
             ShowAll();
             ShowMetaInfo();
             dbConnection.Close();
@@ -35,8 +35,16 @@ namespace CMySql
         public static void InsertValue()
         {
             IDbCommand dbCommand = dbConnection.CreateCommand();
-            string nombre = "nuevo" + DateTime.Now;
-            dbCommand.CommandText = string.Format("insert into categoria(nombre) values('{0}')", nombre);
+            Console.WriteLine("Introduce el nombre de la categoria: ");
+            string nombre = Console.ReadLine();
+            dbCommand.CommandText = string.Format("insert into categoria(nombre) values(@nombre)");
+
+            //IDataParameter dbDataParameter = dbCommand.CreateParameter();
+            //dbDataParameter.ParameterName = "nombre";
+            //dbDataParameter.Value = nombre;
+            //dbCommand.Parameters.Add(dbDataParameter);//cat33
+            DBCommmandHelper.AddParameter(dbCommand, "nombre", nombre);
+
             dbCommand.ExecuteNonQuery();
         }
 
@@ -54,6 +62,7 @@ namespace CMySql
 
             dataReader.Close();
         }
+
 
     }
 }
