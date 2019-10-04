@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-namespace CMySql
+namespace Serpis.Ad
 {
     public class DBCommmandHelper
     {
@@ -13,4 +13,3 @@ namespace CMySql
         }
     }
 }
-
