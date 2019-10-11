@@ -30,11 +30,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="CSerpisMenu">
+      <HintPath>..\..\CSerpisMenu\CSerpisMenu\bin\Debug\CSerpisMenu.dll</HintPath>
+    </Reference>
+    <Reference Include="CSerpisAD">
+      <HintPath>..\..\CSerpisAd\CSerpisAD\CSerpisAD\bin\Debug\CSerpisAD.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\mysqldata\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet">
+      <HintPath>..\..\mysqldata\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Menu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
