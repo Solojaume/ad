@@ -20,7 +20,7 @@ CREATE TABLE `dbprueba`.`articulos` (
     `precio` DECIMAL(10,2) NULL , 
     `categoria` BIGINT UNSIGNED NOT NULL ,
      PRIMARY KEY (`id`),
-     FOREIGN KEY (`categoria`) REFERENCES cliente(`id`)
+     FOREIGN KEY (`categoria`) REFERENCES categoria(`id`)
  ) ENGINE = InnoDB;
 
 INSERT INTO `articulo` (`id`, `nombre`, `precio`, `categoria`) VALUES (NULL, 'ARTICULO1', '9.99', '1')
