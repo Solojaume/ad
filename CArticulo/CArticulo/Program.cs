@@ -42,22 +42,41 @@ namespace CArticulo
 
         private static void editar() {
             Console.WriteLine("Ha entrado en editar");
-            Console.ReadLine();
+
+            IDbCommand dbCommand = dbConnection.CreateCommand();
+            obtion = 1;
+            listar();//Aquí se muestra
+
+            Console.WriteLine("Introduce el id del articulo que quieras editar:");
+            string id = Console.ReadLine();
+
+            dbCommand.CommandText = "Delete from articulo where id = @id";
+            DBCommmandHelper.AddParameter(dbCommand, "id", id);
+            dbCommand.ExecuteNonQuery();
         }
 
       
 
         private static void borrar() {
-            Console.WriteLine("Introduce el id del articulo que quieras borrar:" +
-            	"");
-            Console.ReadLine();
+            IDbCommand dbCommand = dbConnection.CreateCommand();
+            obtion = 1;
+            listar();//Aquí se muestra
+
+            Console.WriteLine("Introduce el id del articulo que quieras borrar:");
+            string id = Console.ReadLine();
+
+            dbCommand.CommandText = "Delete from articulo where id = @id";
+            DBCommmandHelper.AddParameter(dbCommand, "id", id);
+            dbCommand.ExecuteNonQuery();
+
         }
 
        
 
 
         private static void listar() {
-            if(obtion=)
+            if (obtion == 0)
+                Console.WriteLine("Has entrado al modo listar");
             Console.WriteLine("Muestro todos los articulos de la lista");
             IDbCommand dbCommand = dbConnection.CreateCommand();
             dbCommand.CommandText = "select * from articulo ";
@@ -67,6 +86,8 @@ namespace CArticulo
             while (dataReader.Read()) {
                 Console.WriteLine("id={0} nombre={1} precio={2} categoria={3}", dataReader["id"], dataReader["nombre"], dataReader["precio"], dataReader["categoria"]);
             }
+            obtion = 0;
+            dataReader.Close();
         }
 
 
