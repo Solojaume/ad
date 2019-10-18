@@ -1,5 +1,5 @@
 ﻿using System;
-namespace CGtk.Properties
+namespace CGtk
 {
     public partial class CategoriaWindow : Gtk.Window
     {
