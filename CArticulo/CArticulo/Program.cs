@@ -47,7 +47,7 @@ namespace CArticulo
             obtion = 1;
             listar();//Aquí se muestra
 
-            Console.WriteLine("Introduce el id del articulo que quieras editar:");
+            //Console.WriteLine("Introduce el id del articulo que quieras editar:");
             //DBCommmandHelper.AddParameter(dbCommand, "id", Console.ReadLine());
             //Menu.Create("Menu editar")
               // .Add("1-Nombre", () =>
