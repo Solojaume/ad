@@ -48,11 +48,42 @@ namespace CArticulo
             listar();//Aquí se muestra
 
             Console.WriteLine("Introduce el id del articulo que quieras editar:");
-            string id = Console.ReadLine();
+            //DBCommmandHelper.AddParameter(dbCommand, "id", Console.ReadLine());
+            //Menu.Create("Menu editar")
+              // .Add("1-Nombre", () =>
+              // {
+              //     Console.WriteLine("Introduce el nuevo nombre del articulo:");
+              //     dbCommand.CommandText = "Update articulo set nombre = @nombre, " +
+              //                       "where id= @id";
+              //     DBCommmandHelper.AddParameter(dbCommand, "nombre", Console.ReadLine());
+              // })
+              //.Add("2-Precio", () =>
+              //{
+              //    Console.WriteLine("Introduce el nuevo nombre del articulo:");
+              //    dbCommand.CommandText = "Update articulo set precio = @precio, " +
+              //                      "where id= @id";
+              //    DBCommmandHelper.AddParameter(dbCommand, " precio ", Console.ReadLine());
+              //})
+              //.Add("3-Borrar", borrar);
+            
+            dbCommand.CommandText = "Update articulo set nombre = @nombre, " +
+            	                     "precio = @precio, categoria = @categoria "+ 
+                                          "where id= @id";
 
-            dbCommand.CommandText = "Delete from articulo where id = @id";
-            DBCommmandHelper.AddParameter(dbCommand, "id", id);
+            Console.WriteLine("Introduce el id del articulo que quieras editar:");
+            DBCommmandHelper.AddParameter(dbCommand, "@id", Console.ReadLine());
+
+            Console.WriteLine("Introduce el nuevo nombre del articulo:");
+            DBCommmandHelper.AddParameter(dbCommand, "@nombre", Console.ReadLine());
+
+            Console.WriteLine("Introduce el nuevo precio del articulo:");
+            DBCommmandHelper.AddParameter(dbCommand, "@precio", float.Parse(Console.ReadLine()));
+
+            Console.WriteLine("Introduce el nuevo categoria del articulo:");
+            DBCommmandHelper.AddParameter(dbCommand, "@categoria", int.Parse(Console.ReadLine()));
             dbCommand.ExecuteNonQuery();
+
+
         }
 
       
