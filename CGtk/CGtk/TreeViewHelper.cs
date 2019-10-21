@@ -6,7 +6,6 @@ namespace Serpis.Ad
 {
     public class TreeViewHelper
     {
-        private static string propertyName;
 
         public static void Fill (TreeView treeView,  string[] propertyNames, IEnumerable enumerable) {
             if (treeView.Model == null)
@@ -14,6 +13,7 @@ namespace Serpis.Ad
             ListStore listStore = new ListStore(typeof(object));
             foreach (object obj in enumerable)
                 listStore.AppendValues(obj);
+            treeView.Model = listStore;
         }
 
         public static void init(TreeView treeView,string[] propertyNames) {
@@ -35,7 +35,7 @@ namespace Serpis.Ad
             return GetValue(treeView, "Id");
         }
 
-        public static object GetValue(TreeView treeView, string property) {
+        public static object GetValue(TreeView treeView, string propertyName) {
             if (!treeView.Selection.GetSelected(out TreeIter treeIter)) //Ninguna fila seleccionada
                 return null;
             object obj = treeView.Model.GetValue(treeIter, 0);

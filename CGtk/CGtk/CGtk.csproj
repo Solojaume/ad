@@ -52,6 +52,19 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Mono.Posix" />
+    <Reference Include="CSerpisAD">
+      <HintPath>..\..\CSerpisAd\CSerpisAD\CSerpisAD\bin\Debug\CSerpisAD.dll</HintPath>
+    </Reference>
+    <Reference Include="CSerpisMenu">
+      <HintPath>..\..\CSerpisMenu\CSerpisMenu\bin\Debug\CSerpisMenu.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\mysqldata\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet">
+      <HintPath>..\..\mysqldata\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -68,6 +81,7 @@
     <Compile Include="TreeViewHelper.cs" />
     <Compile Include="Categoria.cs" />
     <Compile Include="gtk-gui\CGtk.CategoriaWindow.cs" />
+    <Compile Include="App.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,6 +7,9 @@ namespace CGtk
             this.id = id;
             this.nombre = nombre;
         }
+        public Categoria() {
+
+        }
 
         private ulong id;
         private string nombre;
