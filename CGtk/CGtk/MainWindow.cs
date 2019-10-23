@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using MySql.Data.MySqlClient;
 using System.Reflection;
-using Sepis.Ad;
+using Serpis.Ad;
 
 public partial class MainWindow : Gtk.Window
 {
@@ -43,10 +43,10 @@ public partial class MainWindow : Gtk.Window
 
         TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" },categorias);
 
-        newAction.Activated += (sender, e) => new CategoriaWindow (dbConnection,null);
+        newAction.Activated += (sender, e) => new CategoriaWindow (null);
 
         editAction.Activated += (sender, e) => {
-            new CategoriaWindow(dbConnection.TreeViewHelper.GetId(treeView));
+            new CategoriaWindow(TreeViewHelper.GetId(treeView));
         };
         refreshAction.Activated += (sender, e) =>
             TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, categorias);

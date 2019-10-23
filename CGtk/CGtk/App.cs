@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-namespace Sepis.Ad
+namespace Serpis.Ad
 {
     public class App
     {
