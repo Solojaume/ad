@@ -1,20 +1,20 @@
 ﻿using System;
 using Gtk;
 using CGtk;
-using Serpis.Ad;
 using System.Collections.Generic;
 using System.Data;
 using MySql.Data.MySqlClient;
 using System.Reflection;
+using Sepis.Ad;
 
 public partial class MainWindow : Gtk.Window
 {
-    private static IDbConnection dbConnection = new MySqlConnection(
-    "server=localhost;database=dbprueba;uid=root;pwd=sistemas;ssl-mode=none"
-    );
+    IDbConnection dbConnection = App.Instance.DbConnection =
+        new MySqlConnection("server=localhost;database=dbprueba;" +
+            "uid=root;pwd=sistemas;ssl-mode=none"   );
     public MainWindow() : base(Gtk.WindowType.Toplevel) {
         Build();
-        dbConnection.Open();
+        App.Instance.DbConnection.Open();
 
         IList<Categoria> categorias = new List<Categoria>();
         IDbCommand dbCommand = dbConnection.CreateCommand();
@@ -46,7 +46,7 @@ public partial class MainWindow : Gtk.Window
         newAction.Activated += (sender, e) => new CategoriaWindow (dbConnection,null);
 
         editAction.Activated += (sender, e) => {
-            new CategoriaWindow(dbConnection,TreeViewHelper.GetId(treeView));
+            new CategoriaWindow(dbConnection.TreeViewHelper.GetId(treeView));
         };
         refreshAction.Activated += (sender, e) =>
             TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, categorias);

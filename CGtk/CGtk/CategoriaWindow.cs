@@ -6,6 +6,9 @@ namespace CGtk
 {
     public partial class CategoriaWindow : Gtk.Window
     {
+        public CategoriaWindow(string title) : base(title) {
+        }
+
         public CategoriaWindow(IDbConnection dbConnection, object id) :
                 base(Gtk.WindowType.Toplevel) {
             this.Build();
