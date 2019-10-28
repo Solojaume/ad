@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class PruebaMySql {
 	private static Connection connection;
@@ -32,7 +34,21 @@ public class PruebaMySql {
 	
 	public static void insert() throws SQLException {
 		PreparedStatement preparedStatement = connection.prepareStatement("insert into categoria (nombre) values (?)");
-		preparedStatement.setObject(1, "cat 9");
+		preparedStatement.setObject(1, "cat"+ LocalDateTime.now());
+		preparedStatement.executeUpdate();
+		preparedStatement.close();
+	}
+	
+	public static void update() throws SQLException{
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Introce id a modificar:");
+		String id= sc.nextLine();
+		System.out.println("Introce nombre nuevo:");
+		String nombre= sc.nextLine();
+		PreparedStatement preparedStatement = connection.prepareStatement("UPDATE categoria set nombre=? "
+				+ "where id=?");
+		preparedStatement.setString(1, nombre);
+		preparedStatement.setString(2, id);
 		preparedStatement.executeUpdate();
 		preparedStatement.close();
 	}
