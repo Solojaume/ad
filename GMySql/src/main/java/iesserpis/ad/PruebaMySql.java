@@ -17,8 +17,9 @@ public class PruebaMySql {
 		showAll();
 		
 		insert();
+		update();
 		showAll();
-		
+	    
 		connection.close();
 	}
 	
