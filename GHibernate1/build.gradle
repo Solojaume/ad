@@ -26,8 +26,9 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
-
-    compile 'mysql:mysql-connector-java:8.0.18'
-	compile 'org.hibernate:hibernate-core:5.4.7.Final'    
-
+     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	compile 'mysql:mysql-connector-java:8.0.18'
+	// https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+	implementation 'org.hibernate:hibernate-core:5.4.7.Final'
+	
 }
