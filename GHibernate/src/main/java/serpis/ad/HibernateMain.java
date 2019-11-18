@@ -13,7 +13,7 @@ public class HibernateMain {
 	public static void main(String[] args) {
 		
 		
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("serpis.ad.ghibernate");
+//		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("serpis.ad.ghibernate");
 		Scanner tcl= new Scanner(System.in);
 		int o;
 		System.out.println("Selecciona la tabla:");
