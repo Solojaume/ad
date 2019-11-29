@@ -9,7 +9,7 @@ public class CategoriaDao {
 	protected static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("serpis.ad.ghibernate");
 	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
 	
-    public static List getAll() {
+    private static List getAll() {
         List<Categoria> categorias =  entityManager.createQuery("from Categoria order by Id", 
         		Categoria.class).getResultList();
         return categorias;
