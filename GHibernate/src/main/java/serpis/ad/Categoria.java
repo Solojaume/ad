@@ -25,4 +25,7 @@ public class Categoria {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	public String toString() {
+		return "\t id:"+this.id+"\t nombre: "+this.nombre;
+	}
 }
