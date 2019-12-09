@@ -4,3 +4,5 @@
   Comandos utiles:
 	history: ./sirve para ver los comandos ejecutado
 	Ctrl + r: sirve paera buscar
+
+En un proyecto Gradle hay que refrescar la configuracion de gradle
