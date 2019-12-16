@@ -10,48 +10,82 @@ import javax.persistence.Persistence;
 
 public class Main {
 	protected static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("serpis.ad.ghibernate");
-//	public static void main(String[] args) {
-//		Clientes cliente = new Clientes();
-//		cliente.setNombre("Pepe");
-//		cliente.setDni("3566554");
-//		cliente.setTelefono(BigDecimal.valueOf(65487875));
-//		EntityManager entityManager = entityManagerFactory.createEntityManager();
-//		entityManager.getTransaction().begin();
-//		entityManager.persist(cliente);
-//		List<Clientes> clientes = entityManager.createQuery("from Clientes order by id_cliente", Clientes.class).getResultList();
-//		showAll(clientes);
-//		entityManager.getTransaction().commit();
-//		entityManager.close();
-//	}
-//	public static void showAll(List <Clientes> clientes) {
-//    	for (Clientes cliente : clientes)
-//    		System.out.printf("%3d %s %n %s \n" , cliente.getIdCliente(), cliente.getNombre(),cliente.getDni(),cliente.getTelefono());    	
-//    }
-	
 	public static void main(String[] args) {
-		Scanner tcl = new Scanner(System.in);
-		Paquetes paquete= new Paquetes();
-		System.out.println("Introduce id cliente:");
-		paquete.setIdCliente(tcl.nextLong());
-		paquete.setCantidad(12L);
-		paquete.setPrecio(120L);
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		entityManager.getTransaction().begin();
-		entityManager.persist(paquete);
-		List<Paquetes> paquetes = entityManager.createQuery("from Paquetes order by id_paquete", Paquetes.class).getResultList();
-		showAll(paquetes);
-		entityManager.getTransaction().commit();
+		Scanner tcl= new Scanner(System.in);
+		int o,bool=1;
+		while(bool==1) {
+			System.out.println("Selecciona la tabla:");
+			System.out.println("1-Cliente");
+			System.out.println("2-Paquete");
+			System.out.println("3-Salir");
+			
+			o=Integer.parseInt(tcl.nextLine());
+			if(o==1) {
+				System.out.println("Selecciona la opción");
+				System.out.println("1-Insertar");
+				System.out.println("2-Ver todos");
+				System.out.println("3-Editar");
+				System.out.println("4-Ver uno");
+				System.out.println("5-Eliminar");
 
-		entityManager.close();
+				o=Integer.parseInt(tcl.nextLine());
+				switch (o) {
+				case 1:
+					ClienteDao.insert();
+					break;
+				case 2:
+					ClienteDao.showAll();
+					break;
+				case 3:
+					ClienteDao.edit();
+					break;
+				case 4:
+					ClienteDao.show();
+					break;
+				case 5:
+					ClienteDao.delete();
+				default:
+					break;
+				}
+			}
+			else if(o==2) {
+				System.out.println("Selecciona la opción");
+				System.out.println("1-Insertar");
+				System.out.println("2-Ver todos");
+				System.out.println("3-Editar");
+				System.out.println("4-Ver uno");
+				System.out.println("5-Eliminar");
+
+				o=Integer.parseInt(tcl.nextLine());
+			  switch (o) {
+				case 1:
+					PaqueteDao.insert();
+					break;
+				case 2:
+					PaqueteDao.showAll();
+					break;
+				case 3:
+					PaqueteDao.edit();
+					break;
+				case 4:
+					PaqueteDao.show();
+					break;
+				case 5:
+					PaqueteDao.delete();
+				default:
+					break;
+			  }
+			}
+			else {
+				bool=0;
+				System.exit(0);
+			}
+		}
+		
+				
 		entityManagerFactory.close();
-	
+		
+
 	}
-	public static void showAll(List <Paquetes> paquetes) {
-    	for (Paquetes paquete : paquetes)
-    		System.out.printf("%3d %3d %3d %3d \n" ,paquete.getIdPaquete(), paquete.getIdCliente(), paquete.getPrecio(),paquete.getCantidad());    	
-    	   
-    }
-	
-    
 }
 	

@@ -2,13 +2,16 @@ package serpis.ad;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 @Entity
 public class Clientes {
 	@Id
+	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_cliente;
 	private String dni;
@@ -17,7 +20,8 @@ public class Clientes {
 	public Long getIdCliente() {
 		return id_cliente;
 	}
-	
+	@OneToMany(cascade = CascadeType.ALL, targetEntity =  Paquetes.class, orphanRemoval = true )
+
 	public void setIdCliente(Long id_cliente) {
 		this.id_cliente = id_cliente;
 	}

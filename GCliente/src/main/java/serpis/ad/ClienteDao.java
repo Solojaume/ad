@@ -5,54 +5,47 @@ import java.util.List;
 import java.util.Scanner;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+
 
 public class ClienteDao {
-	private static EntityManagerFactory entityManagerFactory=Main.entityManagerFactory;
-	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
 	private static Scanner tcl= new Scanner(System.in);
-    private static List getAll() {
-        List<Clientes> clientes =  entityManager.createQuery("from Categoria order by Id", 
-        		Clientes.class).getResultList();
-        return clientes;
-    }
+ 
     
     public static void showAll() {
     	List<Clientes> clientes=getAll();
     	for (Clientes cliente : clientes)
-    		System.out.printf("%3d %s %n %s \n" , cliente.getIdCliente(), cliente.getNombre(),cliente.getDni(),cliente.getTelefono());    	
-    	
+    		System.out.printf("%3d %s %s %s \n" , cliente.getIdCliente(), cliente.getNombre(),cliente.getDni(),cliente.getTelefono());    	
     }
     
     public static void insert() {
     	Clientes cliente = new Clientes();
     	cliente.setNombre("cat " + LocalDateTime.now());
-		iniciarTransicion(cliente);
-		ejecutar();
+		transicion(cliente);
     }
     
     public static void edit(){
-    	Clientes categoria = search();
+    	Clientes cliente = search();
     	System.out.println("Imtroduce el nuevo nombre");
-    	categoria.setNombre(tcl.nextLine());
-    	iniciarTransicion(categoria);
-		ejecutar();
+    	cliente.setNombre(tcl.nextLine());
+    	transicion(cliente);
     }
     
     public static void show() {
-    	Clientes categoria = search();
-    	System.out.println(categoria);//Si en persistence.xml se le dice que hibernate muestre los comandos el los mostrara
-    	
+    	Clientes cliente = search();
+    	System.out.println(cliente);//Si en persistence.xml se le dice que hibernate muestre los comandos el los mostrara
     }
+    
     public static void delete() {
-    	Clientes categoria=search();
+    	EntityManager entityManager = Main.entityManagerFactory.createEntityManager();
+    	Clientes cliente=search();
     	entityManager.getTransaction().begin();
-    	entityManager.remove(categoria);
-    	ejecutar();
+    	entityManager.remove(cliente);
+    	entityManager.getTransaction().commit();
+    	entityManager.close();
     }
     
 	private static Clientes search() {
-		System.out.println("Introduce id de la categoria a buscar");
+		System.out.println("Introduce id de la cliente a buscar");
 		int b=Integer.parseInt(tcl.nextLine());
 		List<Clientes> clientes=getAll();
 		Clientes cliente = new Clientes();
@@ -64,18 +57,19 @@ public class ClienteDao {
 		return cliente;
 	}
 
-	private static void iniciarTransicion(Clientes cliente) {
+	private static void transicion(Clientes cliente) {
+		EntityManager entityManager = Main.entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		entityManager.persist(cliente);		
-	}
-	
-	
-	private static void ejecutar() {
-		entityManager.getTransaction().commit();		
-	}
-    
-	public static void close() {
+		entityManager.persist(cliente);
+		entityManager.getTransaction().commit();	
 		entityManager.close();
-		entityManagerFactory.close();
 	}
+	
+	private static List getAll() {
+	    EntityManager entityManager = Main.entityManagerFactory.createEntityManager();
+	    List<Clientes> clientes =  entityManager.createQuery("from Clientes order by id_cliente", 
+	     		Clientes.class).getResultList();
+	    entityManager.close();
+	    return clientes; 
+	 }
 }

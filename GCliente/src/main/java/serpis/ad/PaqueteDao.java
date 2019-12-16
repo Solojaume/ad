@@ -11,73 +11,71 @@ public class PaqueteDao {
 	private static EntityManagerFactory entityManagerFactory=Main.entityManagerFactory;
 	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
 	private static Scanner tcl= new Scanner(System.in);
-    private static List getAll() {
-        List<Clientes> clientes =  entityManager.createQuery("from Categoria order by Id", 
-        		Clientes.class).getResultList();
-        return clientes;
-    }
-    
-    public static void showAll() {
-    	List<Clientes> clientes=getAll();
-    	for (Clientes cliente : clientes)
-    		System.out.printf("%3d %s %n %s \n" , cliente.getIdCliente(), cliente.getNombre(),cliente.getDni(),cliente.getTelefono());    	
-    	
+	
+	public static void showAll() {
+    	List<Paquetes> paquetes=getAll();
+    	for (Paquetes paquete : paquetes)
+    		System.out.printf("%3d %d %d %d \n" ,paquete.getIdPaquete(), paquete.getIdCliente(),paquete.getPrecio(),paquete.getCantidad());    	
     }
     
     public static void insert() {
-    	Clientes cliente = new Clientes();
-    	cliente.setNombre("cat " + LocalDateTime.now());
-		iniciarTransicion(cliente);
-		ejecutar();
+    	Paquetes paquete = new Paquetes();
+    	paquete.setPrecio(1L);
+    	paquete.setCantidad(12L);
+    	paquete.setIdCliente(9L);
+		transicion(paquete);
     }
     
     public static void edit(){
-    	Clientes categoria = search();
+    	Paquetes paquete = search();
     	System.out.println("Imtroduce el nuevo nombre");
-    	categoria.setNombre(tcl.nextLine());
-    	iniciarTransicion(categoria);
-		ejecutar();
+    	paquete.setPrecio(tcl.nextLong());
+    	paquete.setCantidad(tcl.nextLong());
+    	paquete.setIdCliente(tcl.nextLong());
+    	transicion(paquete);
     }
     
     public static void show() {
-    	Clientes categoria = search();
-    	System.out.println(categoria);//Si en persistence.xml se le dice que hibernate muestre los comandos el los mostrara
-    	
+    	Paquetes paquete = search();
+    	System.out.println(paquete);//Si en persistence.xml se le dice que hibernate muestre los comandos el los mostrara
     }
     
     public static void delete() {
-    	Clientes categoria=search();
+    	EntityManager entityManager = Main.entityManagerFactory.createEntityManager();
+    	Paquetes paquete=search();
     	entityManager.getTransaction().begin();
-    	entityManager.remove(categoria);
-    	ejecutar();
+    	entityManager.remove(paquete);
+    	entityManager.getTransaction().commit();
+    	entityManager.close();
     }
     
-	private static Clientes search() {
-		System.out.println("Introduce id de la categoria a buscar");
+	private static Paquetes search() {
+		System.out.println("Introduce id de la paquete a buscar");
 		int b=Integer.parseInt(tcl.nextLine());
-		List<Clientes> clientes=getAll();
-		Clientes cliente = new Clientes();
-		for (Clientes clienteA : clientes)
-			if (clienteA.getIdCliente() == b) {
-				cliente=clienteA;
+		List<Paquetes> paquetes=getAll();
+		Paquetes paquete = new Paquetes();
+		for (Paquetes paqueteA : paquetes)
+			if (paqueteA.getIdCliente() == b) {
+				paquete=paqueteA;
 				break;
 			}
-		return cliente;
+		return paquete;
 	}
 
-	private static void iniciarTransicion(Clientes cliente) {
+	private static void transicion(Paquetes cliente) {
+		EntityManager entityManager = Main.entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		entityManager.persist(cliente);		
-	}
-	
-	
-	private static void ejecutar() {
-		entityManager.getTransaction().commit();		
-	}
-    
-	public static void close() {
+		entityManager.persist(cliente);
+		entityManager.getTransaction().commit();	
 		entityManager.close();
-		entityManagerFactory.close();
 	}
+	
+	private static List getAll() {
+	    EntityManager entityManager = Main.entityManagerFactory.createEntityManager();
+	    List<Paquetes> paquetes =  entityManager.createQuery("from Paquetes order by id_paquete", 
+	    		Paquetes.class).getResultList();
+	    entityManager.close();
+	    return paquetes; 
+	 }
 
 }
