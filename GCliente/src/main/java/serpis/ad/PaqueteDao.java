@@ -37,7 +37,8 @@ public class PaqueteDao {
     
     public static void show() {
     	Paquetes paquete = search();
-    	System.out.println(paquete);//Si en persistence.xml se le dice que hibernate muestre los comandos el los mostrara
+		System.out.printf("%3d %d %d %d \n" ,paquete.getIdPaquete(), paquete.getIdCliente(),paquete.getPrecio(),paquete.getCantidad());    	
+//Si en persistence.xml se le dice que hibernate muestre los comandos el los mostrara
     }
     
     public static void delete() {

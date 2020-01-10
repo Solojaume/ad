@@ -23,16 +23,30 @@ public class ClienteDao {
 		transicion(cliente);
     }
     
+//    public static void edit(){
+//    	Clientes cliente = search();
+//    	System.out.println("Introduce el nuevo nombre");
+//    	cliente.setNombre(tcl.nextLine());    
+//    	transicion(cliente);
+//    }
     public static void edit(){
-    	Clientes cliente = search();
-    	System.out.println("Imtroduce el nuevo nombre");
-    	cliente.setNombre(tcl.nextLine());
-    	transicion(cliente);
+    	EntityManager entityManager = Main.entityManagerFactory.createEntityManager();
+    	System.out.println("Introduce id de la cliente a buscar");
+		Long id=Long.parseLong(tcl.nextLine());
+    	Clientes cliente = entityManager.find(Clientes.class, id);
+    	entityManager.getTransaction().begin();
+    	System.out.println("Introduce el nuevo nombre");
+    	cliente.setNombre(tcl.nextLine());   
+    	entityManager.getTransaction().commit();
+    	entityManager.close();
+
     }
-    
+
+
     public static void show() {
     	Clientes cliente = search();
-    	System.out.println(cliente);//Si en persistence.xml se le dice que hibernate muestre los comandos el los mostrara
+		System.out.printf("%3d %s %s %s \n" , cliente.getIdCliente(), cliente.getNombre(),cliente.getDni(),cliente.getTelefono());    	
+//Si en persistence.xml se le dice que hibernate muestre los comandos el los mostrara
     }
     
     public static void delete() {
