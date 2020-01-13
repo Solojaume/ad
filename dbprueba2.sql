@@ -1,5 +1,6 @@
 START TRANSACTION;
 CREATE DATABASE dbprueva2;
+use dbprueva2;
 CREATE TABLE `clientes` (
   `id_cliente` bigint(20) UNSIGNED NOT NULL AUTO_Increment,
   `dni` varchar(100) DEFAULT NULL,
@@ -17,4 +18,4 @@ CREATE TABLE `paquetes` (
    FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`),
    KEY `id_cliente` (`id_cliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-Comit;
+Commit;

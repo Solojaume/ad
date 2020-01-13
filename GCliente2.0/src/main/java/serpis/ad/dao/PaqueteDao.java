@@ -1,4 +1,4 @@
-package serpis.ad;
+package serpis.ad.dao;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -7,19 +7,20 @@ import java.util.Scanner;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import serpis.ad.*;
+import serpis.ad.model.Paquete;
+
 public class PaqueteDao {
-	private static EntityManagerFactory entityManagerFactory=Main.entityManagerFactory;
-	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
 	private static Scanner tcl= new Scanner(System.in);
 	
 	public static void showAll() {
-    	List<Paquetes> paquetes=getAll();
-    	for (Paquetes paquete : paquetes)
+    	List<Paquete> paquetes=getAll();
+    	for (Paquete paquete : paquetes)
     		System.out.printf("%3d %d %d %d \n" ,paquete.getIdPaquete(), paquete.getIdCliente(),paquete.getPrecio(),paquete.getCantidad());    	
     }
     
     public static void insert() {
-    	Paquetes paquete = new Paquetes();
+    	Paquete paquete = new Paquete();
     	paquete.setPrecio(1L);
     	paquete.setCantidad(12L);
     	paquete.setIdCliente(9L);
@@ -27,10 +28,10 @@ public class PaqueteDao {
     }
     
     public static void edit(){
-    	EntityManager entityManager = Main.entityManagerFactory.createEntityManager();
+    	EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
     	System.out.println("Introduce id de la cliente a buscar");
 		Long id=Long.parseLong(tcl.nextLine());
-    	Paquetes paquetes = entityManager.find(Paquetes.class, id);
+    	Paquete paquetes = entityManager.find(Paquete.class, id);
     	entityManager.getTransaction().begin();
     	System.out.println("Introduce el nuevo precio");
     	paquetes.setPrecio(Long.parseLong(tcl.nextLine()));   
@@ -40,26 +41,26 @@ public class PaqueteDao {
     }
     
     public static void show() {
-    	Paquetes paquete = search();
+    	Paquete paquete = search();
 		System.out.printf("%3d %d %d %d \n" ,paquete.getIdPaquete(), paquete.getIdCliente(),paquete.getPrecio(),paquete.getCantidad());    	
 //Si en persistence.xml se le dice que hibernate muestre los comandos el los mostrara
     }
     
     public static void delete() {
-    	EntityManager entityManager = Main.entityManagerFactory.createEntityManager();
-    	Paquetes paquete=search();
+    	EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
+    	Paquete paquete=search();
     	entityManager.getTransaction().begin();
     	entityManager.remove(paquete);
     	entityManager.getTransaction().commit();
     	entityManager.close();
     }
     
-	private static Paquetes search() {
+	private static Paquete search() {
 		System.out.println("Introduce id de la paquete a buscar");
 		int b=Integer.parseInt(tcl.nextLine());
-		List<Paquetes> paquetes=getAll();
-		Paquetes paquete = new Paquetes();
-		for (Paquetes paqueteA : paquetes)
+		List<Paquete> paquetes=getAll();
+		Paquete paquete = new Paquete();
+		for (Paquete paqueteA : paquetes)
 			if (paqueteA.getIdCliente() == b) {
 				paquete=paqueteA;
 				break;
@@ -67,8 +68,8 @@ public class PaqueteDao {
 		return paquete;
 	}
 
-	private static void transicion(Paquetes cliente) {
-		EntityManager entityManager = Main.entityManagerFactory.createEntityManager();
+	private static void transicion(Paquete cliente) {
+		EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		entityManager.persist(cliente);
 		entityManager.getTransaction().commit();	
@@ -76,9 +77,9 @@ public class PaqueteDao {
 	}
 	
 	private static List getAll() {
-	    EntityManager entityManager = Main.entityManagerFactory.createEntityManager();
-	    List<Paquetes> paquetes =  entityManager.createQuery("from Paquetes order by id_paquete", 
-	    		Paquetes.class).getResultList();
+	    EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
+	    List<Paquete> paquetes =  entityManager.createQuery("from Paquetes order by id_paquete", 
+	    		Paquete.class).getResultList();
 	    entityManager.close();
 	    return paquetes; 
 	 }
