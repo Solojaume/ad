@@ -20,33 +20,18 @@ public class Cliente {
 	public Long getIdCliente() {
 		return id_cliente;
 	}
-	@OneToMany(cascade = CascadeType.ALL, targetEntity =  Paquete.class, orphanRemoval = true )
+//	@OneToMany(cascade = CascadeType.ALL, targetEntity =  Paquete.class, orphanRemoval = true )
 
 	public void setIdCliente(Long id_cliente) {
 		this.id_cliente = id_cliente;
 	}
-	
-	public String getDni() {
-		
-		return dni;
-	}
-	
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
 	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-	public BigDecimal getTelefono() {
-		return telefono;
-	}
-	public void setTelefono(BigDecimal telefono) {
-		this.telefono = telefono;
 	}
 	
 }

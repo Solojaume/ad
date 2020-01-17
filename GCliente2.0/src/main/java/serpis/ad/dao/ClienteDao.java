@@ -16,7 +16,7 @@ public class ClienteDao {
     public static void showAll() {
     	List<Cliente> clientes=getAll();
     	for (Cliente cliente : clientes)
-    		System.out.printf("%3d %s %s %s \n" , cliente.getIdCliente(), cliente.getNombre(),cliente.getDni(),cliente.getTelefono());    	
+    		System.out.printf("%3d %s \n" , cliente.getIdCliente(), cliente.getNombre());    	
     }
     
     public static void insert() {
@@ -47,7 +47,7 @@ public class ClienteDao {
 
     public static void show() {
     	Cliente cliente = search();
-		System.out.printf("%3d %s %s %s \n" , cliente.getIdCliente(), cliente.getNombre(),cliente.getDni(),cliente.getTelefono());    	
+		System.out.printf("%3d %s \n" , cliente.getIdCliente(), cliente.getNombre());    	
 //Si en persistence.xml se le dice que hibernate muestre los comandos el los mostrara
     }
     
