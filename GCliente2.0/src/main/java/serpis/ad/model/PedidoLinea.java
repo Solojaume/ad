@@ -19,7 +19,7 @@ public class PedidoLinea {
 	@JoinColumn(name = "pedido_id",
 	foreignKey = @ForeignKey(name = "pedidolinea_ibfk_1")
 	)
-	private Pedido idPedido;
+	private Pedido pedido;
 	@ManyToOne
 	@JoinColumn(name = "articulo_id",
 	foreignKey = @ForeignKey(name = "pedidolinea_ibfk_2")
@@ -36,10 +36,10 @@ public class PedidoLinea {
 		this.id = id;
 	}
 	public Pedido getIdPedido() {
-		return idPedido;
+		return pedido;
 	}
 	public void setIdPedido(Pedido idPedido) {
-		this.idPedido = idPedido;
+		this.pedido = idPedido;
 	}
 	public Articulo getArticulo() {
 		return articulo;

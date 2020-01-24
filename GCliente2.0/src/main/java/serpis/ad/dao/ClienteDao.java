@@ -54,6 +54,9 @@ public class ClienteDao {
     public static void delete() {
     	EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
     	Cliente cliente=search();
+//    	System.out.println("Introduce id de la cliente a borrar");
+//		Long id=Long.parseLong(tcl.nextLine());
+//    	Cliente cliente=entityManager.find(Cliente.class, id);
     	entityManager.getTransaction().begin();
     	entityManager.remove(cliente);
     	entityManager.getTransaction().commit();

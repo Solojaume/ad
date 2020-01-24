@@ -17,8 +17,8 @@ public class Articulo {
 	private String nombre;
 	private BigDecimal precio;
 	@ManyToOne
-	@JoinColumn(name = "articulo_id",
-	foreignKey = @ForeignKey(name = "pedidolinea_ibfk_2"))
+	@JoinColumn(name = "categoria_id",
+	foreignKey = @ForeignKey(name = "articulo_ibfk_1"))
 	private Categoria categoria;
 	public Long getId() {
 		return id;
