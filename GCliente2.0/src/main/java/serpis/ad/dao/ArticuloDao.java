@@ -1,5 +1,6 @@
 package serpis.ad.dao;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
@@ -14,16 +15,16 @@ private static Scanner tcl= new Scanner(System.in);
 	
     private static List getAll() {
 	    EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
-        List<Articulo> articulos =  entityManager.createQuery("from Articulos order by Id", 
+        List<Articulo> articulos =  entityManager.createQuery("from Articulo order by Id", 
         		Articulo.class).getResultList();
 	    entityManager.close();
         return articulos;
     }
     
     public static void showAll() {
-    	List<Articulo> categorias=getAll();
-    	for (Articulo categoria : categorias)
-			System.out.printf("%3d %s %n", categoria.getId(), categoria.getNombre());
+    	List<Articulo> articulos=getAll();
+    	for (Articulo articulo : articulos)
+			System.out.printf("%3d %s %s \n", articulo.getId(), articulo.getNombre(),articulo.getCategoria().getNombre());
     	
     	
     }
@@ -31,13 +32,13 @@ private static Scanner tcl= new Scanner(System.in);
     public static void insert() {
     	EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
     	Articulo articulo = new Articulo();
-		articulo.setNombre("cat " + LocalDateTime.now());
+		articulo.setNombre("Art " + LocalDateTime.now());
     	System.out.println("Introduce el nuevo precio:");
-    	articulo.setPrecio(tcl.nextBigDecimal());
+    	articulo.setPrecio(new BigDecimal(tcl.nextLine()));
     	System.out.println("Introduce la id de la categoria:");
-    	articulo.setCategoria(entityManager.find(Categoria.class, Long.parseLong(tcl.nextLine())));
-		System.out.println("Introduce la id de la categoria:");
-    	articulo.setCategoria(entityManager.find(Categoria.class, Long.parseLong(tcl.nextLine())));
+    	Categoria cat=entityManager.find(Categoria.class, Long.parseLong(tcl.nextLine()));
+    	articulo.setCategoria(cat);
+
 		entityManager.getTransaction().begin();
     	entityManager.persist(articulo);	
     	entityManager.getTransaction().commit();
@@ -46,7 +47,7 @@ private static Scanner tcl= new Scanner(System.in);
     
     public static void edit(){
     	EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
-    	System.out.println("Introduce id de la cliente a buscar");
+    	System.out.println("Introduce id de la articulo a buscar");
 		Long id=Long.parseLong(tcl.nextLine());
     	Articulo articulo =  entityManager.find(Articulo.class, id);
 		entityManager.getTransaction().begin();
@@ -54,7 +55,7 @@ private static Scanner tcl= new Scanner(System.in);
     	articulo.setNombre(tcl.nextLine());
     	
     	System.out.println("Introduce el nuevo precio:");
-    	articulo.setPrecio(tcl.nextBigDecimal());
+    	articulo.setPrecio(new BigDecimal(tcl.nextLine()));
     	System.out.println("Introduce la id de la categoria:");
     	articulo.setCategoria(entityManager.find(Categoria.class, Long.parseLong(tcl.nextLine())));
     	entityManager.getTransaction().commit();

@@ -13,17 +13,17 @@ public class Cliente {
 	@Id
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_cliente;
-	private String dni;
+	private Long id;
+//	private String dni;
 	private String nombre;
-	private BigDecimal telefono;
-	public Long getIdCliente() {
-		return id_cliente;
+//	private BigDecimal telefono;
+	public Long getId() {
+		return id;
 	}
-//	@OneToMany(cascade = CascadeType.ALL, targetEntity =  Paquete.class, orphanRemoval = true )
+	@OneToMany(cascade = CascadeType.ALL, targetEntity =  Pedido.class, orphanRemoval = true )
 
-	public void setIdCliente(Long id_cliente) {
-		this.id_cliente = id_cliente;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNombre() {

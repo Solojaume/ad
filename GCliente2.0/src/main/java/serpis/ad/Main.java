@@ -8,9 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import serpis.ad.dao.ArticuloDao;
+import serpis.ad.dao.CategoriaDao;
 import serpis.ad.dao.ClienteDao;
 import serpis.ad.dao.ContainerEntitityManager;
-import serpis.ad.dao.PaqueteDao;
 
 public class Main {
 	
@@ -20,8 +21,9 @@ public class Main {
 		while(bool==1) {
 			System.out.println("Selecciona la tabla:");
 			System.out.println("1-Cliente");
-			System.out.println("2-Paquete");
-			System.out.println("3-Salir");
+			System.out.println("2-Categoria");
+			System.out.println("3-Articulo");
+			System.out.println("4-Salir");
 			
 			o=Integer.parseInt(tcl.nextLine());
 			if(o==1) {
@@ -63,19 +65,47 @@ public class Main {
 				o=Integer.parseInt(tcl.nextLine());
 			  switch (o) {
 				case 1:
-					PaqueteDao.insert();
+					CategoriaDao.insert();
 					break;
 				case 2:
-					PaqueteDao.showAll();
+					CategoriaDao.showAll();
 					break;
 				case 3:
-					PaqueteDao.edit();
+					CategoriaDao.edit();
 					break;
 				case 4:
-					PaqueteDao.show();
+					CategoriaDao.show();
 					break;
 				case 5:
-					PaqueteDao.delete();
+					CategoriaDao.delete();
+				default:
+					break;
+			  }
+			}
+			else if(o==3) {
+				System.out.println("Selecciona la opción");
+				System.out.println("1-Insertar");
+				System.out.println("2-Ver todos");
+				System.out.println("3-Editar");
+				System.out.println("4-Ver uno");
+				System.out.println("5-Eliminar");
+
+				o=Integer.parseInt(tcl.nextLine());
+			  switch (o) {
+				case 1:
+					ArticuloDao.insert();
+					break;
+				case 2:
+					ArticuloDao.showAll();
+					break;
+				case 3:
+					ArticuloDao.edit();
+					break;
+				case 4:
+					ArticuloDao.show();
+					break;
+				case 5:
+					ArticuloDao.delete();
 				default:
 					break;
 			  }

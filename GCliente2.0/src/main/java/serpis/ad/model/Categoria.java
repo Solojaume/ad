@@ -1,9 +1,11 @@
 package serpis.ad.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Categoria {
@@ -12,7 +14,8 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
-	
+	@OneToMany(cascade = CascadeType.ALL,targetEntity =  Articulo.class, orphanRemoval = true)
+
 	public Long getId() {
 		return id;
 	}

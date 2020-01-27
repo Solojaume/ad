@@ -16,7 +16,7 @@ public class ClienteDao {
     public static void showAll() {
     	List<Cliente> clientes=getAll();
     	for (Cliente cliente : clientes)
-    		System.out.printf("%3d %s \n" , cliente.getIdCliente(), cliente.getNombre());    	
+    		System.out.printf("%3d %s \n" , cliente.getId(), cliente.getNombre());    	
     }
     
     public static void insert() {
@@ -47,7 +47,7 @@ public class ClienteDao {
 
     public static void show() {
     	Cliente cliente = search();
-		System.out.printf("%3d %s \n" , cliente.getIdCliente(), cliente.getNombre());    	
+		System.out.printf("%3d %s \n" , cliente.getId(), cliente.getNombre());    	
 //Si en persistence.xml se le dice que hibernate muestre los comandos el los mostrara
     }
     
@@ -69,7 +69,7 @@ public class ClienteDao {
 		List<Cliente> clientes=getAll();
 		Cliente cliente = new Cliente();
 		for (Cliente clienteA : clientes)
-			if (clienteA.getIdCliente() == b) {
+			if (clienteA.getId() == b) {
 				cliente=clienteA;
 				break;
 			}
@@ -86,7 +86,7 @@ public class ClienteDao {
 	
 	private static List getAll() {
 	    EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
-	    List<Cliente> clientes =  entityManager.createQuery("from Clientes order by id_cliente", 
+	    List<Cliente> clientes =  entityManager.createQuery("from Cliente order by id", 
 	     		Cliente.class).getResultList();
 	    entityManager.close();
 	    return clientes; 

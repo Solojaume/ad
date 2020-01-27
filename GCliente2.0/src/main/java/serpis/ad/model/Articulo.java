@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,12 +13,12 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Articulo {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
 	private BigDecimal precio;
 	@ManyToOne
-	@JoinColumn(name = "categoria_id",
+	@JoinColumn(name = "categoria",
 	foreignKey = @ForeignKey(name = "articulo_ibfk_1"))
 	private Categoria categoria;
 	public Long getId() {

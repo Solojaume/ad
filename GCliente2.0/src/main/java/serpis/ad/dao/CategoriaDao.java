@@ -55,9 +55,10 @@ public class CategoriaDao {
     
     public static void delete() {	    
     	EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
-    	System.out.println("Introduce id de la categoria a buscar");
-		Long id=Long.parseLong(tcl.nextLine());
-    	Categoria categoria=entityManager.find(Categoria.class, id);
+    	Categoria categoria =search();
+//    	System.out.println("Introduce id de la categoria a buscar");
+//		Long id=Long.parseLong(tcl.nextLine());
+//    	Categoria categoria=entityManager.find(Categoria.class, id);
     	entityManager.getTransaction().begin();
     	entityManager.remove(categoria);
     	entityManager.getTransaction().commit();
