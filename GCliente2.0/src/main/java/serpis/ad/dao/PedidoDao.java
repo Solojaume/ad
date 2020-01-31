@@ -38,10 +38,15 @@ private static Scanner tcl= new Scanner(System.in);
     	pedido.setCliente(cli);
     	int b=1;
     	PedidoLineaDao.insert(pedido);
-        System.out.println("Quieres añadir otra linea de pedidos");
+        
     	while(b==1) {
-    		b=1;
-    		
+    		System.out.println("Quieres añadir otra linea de pedido?");
+    		System.out.println("1-Sí");
+    		System.out.println("2-No");
+    		if(Integer.parseInt(tcl.nextLine())==1)
+    			PedidoLineaDao.insert(pedido);
+    		else
+    			b=0;
     		
     	}
 		entityManager.getTransaction().begin();
