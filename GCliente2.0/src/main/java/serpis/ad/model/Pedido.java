@@ -2,8 +2,12 @@ package serpis.ad.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
+
+
 import javax.persistence.*;
 @Entity
 public class Pedido {
@@ -18,7 +22,10 @@ public class Pedido {
 			foreignKey = @ForeignKey(name = "pedido_ibfk_1")
 	)
 	private Cliente cliente;
+	
 	private BigDecimal importe;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<PedidoLinea> pl = new ArrayList<>();
 	public Long getId() {
 		return id;
 	}

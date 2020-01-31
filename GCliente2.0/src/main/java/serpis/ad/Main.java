@@ -12,6 +12,7 @@ import serpis.ad.dao.ArticuloDao;
 import serpis.ad.dao.CategoriaDao;
 import serpis.ad.dao.ClienteDao;
 import serpis.ad.dao.ContainerEntitityManager;
+import serpis.ad.dao.PedidoDao;
 
 public class Main {
 	
@@ -23,7 +24,9 @@ public class Main {
 			System.out.println("1-Cliente");
 			System.out.println("2-Categoria");
 			System.out.println("3-Articulo");
-			System.out.println("4-Salir");
+			System.out.println("4-Pedido");
+			System.out.println("5-Linea Pedido");
+			System.out.println("6-Salir");
 			
 			o=Integer.parseInt(tcl.nextLine());
 			if(o==1) {
@@ -106,6 +109,34 @@ public class Main {
 					break;
 				case 5:
 					ArticuloDao.delete();
+				default:
+					break;
+			  }
+			}
+			else if(o==4) {
+				System.out.println("Selecciona la opción");
+				System.out.println("1-Insertar");
+				System.out.println("2-Ver todos");
+				System.out.println("3-Editar");
+				System.out.println("4-Ver uno");
+				System.out.println("5-Eliminar");
+
+				o=Integer.parseInt(tcl.nextLine());
+			  switch (o) {
+				case 1:
+					PedidoDao.insert();
+					break;
+				case 2:
+					PedidoDao.showAll();
+					break;
+				case 3:
+					PedidoDao.edit();
+					break;
+				case 4:
+					PedidoDao.show();
+					break;
+				case 5:
+					PedidoDao.delete();
 				default:
 					break;
 			  }

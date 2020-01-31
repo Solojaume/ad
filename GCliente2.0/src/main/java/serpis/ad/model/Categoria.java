@@ -14,7 +14,7 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
-	@OneToMany(cascade = CascadeType.ALL,targetEntity =  Articulo.class, orphanRemoval = true)
+//	@OneToMany(cascade = CascadeType.REMOVE,targetEntity =  Articulo.class, orphanRemoval = true)
 
 	public Long getId() {
 		return id;

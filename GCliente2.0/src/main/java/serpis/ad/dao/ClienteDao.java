@@ -36,6 +36,10 @@ public class ClienteDao {
     	System.out.println("Introduce id de la cliente a buscar");
 		Long id=Long.parseLong(tcl.nextLine());
     	Cliente cliente = entityManager.find(Cliente.class, id);
+    	if(cliente== null) {
+    		System.out.println("No se encuentra");
+    		
+    	}
     	entityManager.getTransaction().begin();
     	System.out.println("Introduce el nuevo nombre");
     	cliente.setNombre(tcl.nextLine());   
@@ -53,10 +57,10 @@ public class ClienteDao {
     
     public static void delete() {
     	EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
-    	Cliente cliente=search();
-//    	System.out.println("Introduce id de la cliente a borrar");
-//		Long id=Long.parseLong(tcl.nextLine());
-//    	Cliente cliente=entityManager.find(Cliente.class, id);
+    	
+    	System.out.println("Introduce id de la cliente a borrar");
+		Long id=Long.parseLong(tcl.nextLine());
+    	Cliente cliente=entityManager.find(Cliente.class, id);
     	entityManager.getTransaction().begin();
     	entityManager.remove(cliente);
     	entityManager.getTransaction().commit();

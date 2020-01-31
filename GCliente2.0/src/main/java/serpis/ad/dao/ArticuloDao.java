@@ -70,7 +70,7 @@ private static Scanner tcl= new Scanner(System.in);
     
     public static void delete() {	    
     	EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
-    	System.out.println("Introduce id de la cliente a buscar");
+    	System.out.println("Introduce id de la ARTICULO a buscar");
 		Long id=Long.parseLong(tcl.nextLine());
     	Articulo articulo=entityManager.find(Articulo.class, id);
     	entityManager.getTransaction().begin();
@@ -80,7 +80,7 @@ private static Scanner tcl= new Scanner(System.in);
     }
     
 	private static Articulo search() {
-		System.out.println("Introduce id de la categoria a buscar");
+		System.out.println("Introduce id de la ARTICULO a buscar");
 		int b=Integer.parseInt(tcl.nextLine());
 		List<Articulo> categorias=getAll();
 		Articulo categoria = new Articulo();
