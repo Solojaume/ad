@@ -9,7 +9,7 @@ import java.util.Scanner;
 import javax.persistence.EntityManager;
 
 
-public class ClienteDao {
+public class ClienteHelper {
 	private static Scanner tcl= new Scanner(System.in);
      
     

@@ -20,8 +20,7 @@ public class Cliente {
 	public Long getId() {
 		return id;
 	}
-	@OneToMany(cascade = CascadeType.ALL, targetEntity =  Pedido.class, orphanRemoval = true )
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}

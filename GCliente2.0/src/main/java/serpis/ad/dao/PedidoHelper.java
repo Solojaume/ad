@@ -1,6 +1,8 @@
 package serpis.ad.dao;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,8 +11,9 @@ import javax.persistence.EntityManager;
 import serpis.ad.model.Categoria;
 import serpis.ad.model.Cliente;
 import serpis.ad.model.Pedido;
+import serpis.ad.model.PedidoLinea;
 
-public class PedidoDao {
+public class PedidoHelper {
 
 private static Scanner tcl= new Scanner(System.in);
 	
@@ -36,19 +39,23 @@ private static Scanner tcl= new Scanner(System.in);
 		System.out.println("Introduce la id del cliente al que quieres asociar el pedido:");
     	Cliente cli=entityManager.find(Cliente.class, Long.parseLong(tcl.nextLine()));
     	pedido.setCliente(cli);
+    	
     	int b=1;
-    	PedidoLineaDao.insert(pedido);
+    	PedidoLineaHelper.crear(pedido);
         
     	while(b==1) {
     		System.out.println("Quieres añadir otra linea de pedido?");
     		System.out.println("1-Sí");
     		System.out.println("2-No");
     		if(Integer.parseInt(tcl.nextLine())==1)
-    			PedidoLineaDao.insert(pedido);
+    			PedidoLineaHelper.crear(pedido);
     		else
     			b=0;
     		
     	}
+    	BigDecimal importe= new BigDecimal("1");
+    	
+    	pedido.setImporte(importe);
 		entityManager.getTransaction().begin();
     	entityManager.persist(pedido);	
     	entityManager.getTransaction().commit();

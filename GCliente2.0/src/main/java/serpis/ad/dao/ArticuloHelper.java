@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import serpis.ad.model.Articulo;
 import serpis.ad.model.Categoria;
 
-public class ArticuloDao {
+public class ArticuloHelper {
 private static Scanner tcl= new Scanner(System.in);
 	
     private static List getAll() {

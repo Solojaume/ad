@@ -12,13 +12,13 @@ import javax.persistence.*;
 @Entity
 public class Pedido {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 //	@Column(name="`fecha`")
 	private LocalDateTime fecha;
 	@ManyToOne
-	@JoinColumn(name = "client_id",
+	@JoinColumn(name = "cliente",
 			foreignKey = @ForeignKey(name = "pedido_ibfk_1")
 	)
 	private Cliente cliente;
@@ -26,27 +26,47 @@ public class Pedido {
 	private BigDecimal importe;
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<PedidoLinea> pl = new ArrayList<>();
+	
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	
+	public List<PedidoLinea> getPedidosLineas() {
+		return pl;
+	}
+	
 	public LocalDateTime getFecha() {
 		return fecha;
 	}
+	
 	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
+	
 	public Cliente getCliente() {
 		return cliente;
 	}
+	
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	
+	private void preGetImporte() {
+		importe = BigDecimal.ZERO;
+		for (PedidoLinea pedidoLinea : pl)
+			importe = importe.add(pedidoLinea.getImporte());
+	}
+	
 	public BigDecimal getImporte() {
+		preGetImporte();
 		return importe;
 	}
+	
 	public void setImporte(BigDecimal importe) {
 		this.importe = importe;
 	}

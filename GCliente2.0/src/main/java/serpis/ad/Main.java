@@ -8,11 +8,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import serpis.ad.dao.ArticuloDao;
-import serpis.ad.dao.CategoriaDao;
-import serpis.ad.dao.ClienteDao;
+import serpis.ad.dao.ArticuloHelper;
+import serpis.ad.dao.CategoriaHelper;
+import serpis.ad.dao.ClienteHelper;
 import serpis.ad.dao.ContainerEntitityManager;
-import serpis.ad.dao.PedidoDao;
+import serpis.ad.dao.PedidoHelper;
 
 public class Main {
 	
@@ -40,19 +40,19 @@ public class Main {
 				o=Integer.parseInt(tcl.nextLine());
 				switch (o) {
 				case 1:
-					ClienteDao.insert();
+					ClienteHelper.insert();
 					break;
 				case 2:
-					ClienteDao.showAll();
+					ClienteHelper.showAll();
 					break;
 				case 3:
-					ClienteDao.edit();
+					ClienteHelper.edit();
 					break;
 				case 4:
-					ClienteDao.show();
+					ClienteHelper.show();
 					break;
 				case 5:
-					ClienteDao.delete();
+					ClienteHelper.delete();
 				default:
 					break;
 				}
@@ -68,19 +68,19 @@ public class Main {
 				o=Integer.parseInt(tcl.nextLine());
 			  switch (o) {
 				case 1:
-					CategoriaDao.insert();
+					CategoriaHelper.insert();
 					break;
 				case 2:
-					CategoriaDao.showAll();
+					CategoriaHelper.showAll();
 					break;
 				case 3:
-					CategoriaDao.edit();
+					CategoriaHelper.edit();
 					break;
 				case 4:
-					CategoriaDao.show();
+					CategoriaHelper.show();
 					break;
 				case 5:
-					CategoriaDao.delete();
+					CategoriaHelper.delete();
 				default:
 					break;
 			  }
@@ -96,19 +96,19 @@ public class Main {
 				o=Integer.parseInt(tcl.nextLine());
 			  switch (o) {
 				case 1:
-					ArticuloDao.insert();
+					ArticuloHelper.insert();
 					break;
 				case 2:
-					ArticuloDao.showAll();
+					ArticuloHelper.showAll();
 					break;
 				case 3:
-					ArticuloDao.edit();
+					ArticuloHelper.edit();
 					break;
 				case 4:
-					ArticuloDao.show();
+					ArticuloHelper.show();
 					break;
 				case 5:
-					ArticuloDao.delete();
+					ArticuloHelper.delete();
 				default:
 					break;
 			  }
@@ -117,26 +117,25 @@ public class Main {
 				System.out.println("Selecciona la opción");
 				System.out.println("1-Insertar");
 				System.out.println("2-Ver todos");
-				System.out.println("3-Editar");
-				System.out.println("4-Ver uno");
-				System.out.println("5-Eliminar");
+//				System.out.println("3-Editar");
+				System.out.println("3-Ver uno");
+				System.out.println("4-Eliminar");
 
 				o=Integer.parseInt(tcl.nextLine());
 			  switch (o) {
 				case 1:
-					PedidoDao.insert();
+					PedidoHelper.insert();
 					break;
 				case 2:
-					PedidoDao.showAll();
+					PedidoHelper.showAll();
 					break;
 				case 3:
-					PedidoDao.edit();
+					PedidoHelper.show();
 					break;
 				case 4:
-					PedidoDao.show();
+					PedidoHelper.delete();
 					break;
-				case 5:
-					PedidoDao.delete();
+					
 				default:
 					break;
 			  }

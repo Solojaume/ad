@@ -7,7 +7,7 @@ import java.util.Scanner;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-public class CategoriaDao {
+public class CategoriaHelper {
 	private static Scanner tcl= new Scanner(System.in);
 	
     private static List getAll() {
