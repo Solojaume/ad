@@ -25,7 +25,7 @@ public class Pedido {
 	
 	private BigDecimal importe;
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<PedidoLinea> pl = new ArrayList<>();
+	private List<PedidoLinea> pedidoLinea = new ArrayList<>();
 	
 	public Long getId() {
 		return id;
@@ -37,9 +37,13 @@ public class Pedido {
 	
 	
 	public List<PedidoLinea> getPedidosLineas() {
-		return pl;
+		return pedidoLinea;
 	}
 	
+	public void setPedidosLineas(List<PedidoLinea> pedidoLinea) {
+		this.pedidoLinea = pedidoLinea;
+	}
+
 	public LocalDateTime getFecha() {
 		return fecha;
 	}
@@ -58,7 +62,7 @@ public class Pedido {
 	
 	private void preGetImporte() {
 		importe = BigDecimal.ZERO;
-		for (PedidoLinea pedidoLinea : pl)
+		for (PedidoLinea pedidoLinea : pedidoLinea)
 			importe = importe.add(pedidoLinea.getImporte());
 	}
 	

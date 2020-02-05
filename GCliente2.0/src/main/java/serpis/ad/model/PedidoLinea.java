@@ -2,6 +2,7 @@ package serpis.ad.model;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -17,12 +18,12 @@ public class PedidoLinea {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
-	@JoinColumn(name = "pedido_id",
+	@JoinColumn(name = "pedido",
 	foreignKey = @ForeignKey(name = "pedidolinea_ibfk_1")
 	)
 	private Pedido pedido;
 	@ManyToOne
-	@JoinColumn(name = "articulo_id",
+	@JoinColumn(name = "articulo",
 	foreignKey = @ForeignKey(name = "pedidolinea_ibfk_2")
 	)
 	private Articulo articulo;
@@ -31,8 +32,11 @@ public class PedidoLinea {
 	private BigDecimal importe;
 	private BigDecimal precio;
 	
-	public PedidoLinea(Pedido pedido2) {
-		this.pedido=pedido2;
+	public PedidoLinea(Pedido pedido) {
+		this.pedido = pedido;
+		if(pedido.getPedidosLineas() == null)
+			pedido.setPedidosLineas(new ArrayList<PedidoLinea>());
+		pedido.getPedidosLineas().add(this);
 	}
 	
 	public Long getId() {

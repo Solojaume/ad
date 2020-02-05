@@ -15,7 +15,7 @@ public class PedidoLineaHelper {
 	private static Scanner tcl= new Scanner(System.in);
 
 
-	public static PedidoLinea crear(Pedido pedido) {
+	public static void crear(Pedido pedido) {
 		EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
     	PedidoLinea pedidoLinea = new PedidoLinea(pedido);
     	System.out.println("Introduce el id del articulo:");
@@ -27,7 +27,6 @@ public class PedidoLineaHelper {
     	pedidoLinea.setPrecio(articulo.getPrecio());
     	pedidoLinea.setImporte(pedidoLinea.getPrecio().multiply(pedidoLinea.getUnidades()));   	
     	entityManager.close();
-    	return pedidoLinea;
 		
 	}
 
