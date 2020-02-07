@@ -24,7 +24,7 @@ public class Pedido {
 	private Cliente cliente;
 	
 	private BigDecimal importe;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy ="pedido",cascade = CascadeType.ALL, orphanRemoval = true, fetch=FetchType.EAGER)
 	private List<PedidoLinea> pedidoLinea = new ArrayList<>();
 	
 	public Long getId() {
@@ -62,8 +62,10 @@ public class Pedido {
 	
 	private void preGetImporte() {
 		importe = BigDecimal.ZERO;
-		for (PedidoLinea pedidoLinea : pedidoLinea)
+		for (PedidoLinea pedidoLinea : pedidoLinea) {
+			System.out.println(pedidoLinea);
 			importe = importe.add(pedidoLinea.getImporte());
+		}
 	}
 	
 	public BigDecimal getImporte() {

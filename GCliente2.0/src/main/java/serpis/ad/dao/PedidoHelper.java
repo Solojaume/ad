@@ -27,8 +27,11 @@ private static Scanner tcl= new Scanner(System.in);
     
     public static void showAll() {
     	List<Pedido> pedidos=getAll();
-    	for (Pedido pedido : pedidos)
-			System.out.printf("%3d %s %t %n", pedido.getId(), pedido.getFecha(),pedido.getCliente().getNombre());
+    	for (Pedido pedido : pedidos) {
+			System.out.printf("%3d %s %s %s %n", pedido.getId(), pedido.getFecha(),pedido.getCliente().getNombre(),pedido.getImporte().toString());
+    	    for (PedidoLinea linp:pedido.getPedidosLineas())
+    		System.out.println(linp);
+    	}
     	
     }
     

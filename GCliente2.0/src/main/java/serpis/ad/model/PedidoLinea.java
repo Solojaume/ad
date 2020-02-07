@@ -39,6 +39,15 @@ public class PedidoLinea {
 		pedido.getPedidosLineas().add(this);
 	}
 	
+	private PedidoLinea() {
+		
+	}
+	@Override
+	public String toString() {
+		return "PedidoLinea [id=" + id  + ", articulo=" + articulo + ", unidades=" + unidades
+				+ ", precio=" + precio + ", importe=" + importe  + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}
