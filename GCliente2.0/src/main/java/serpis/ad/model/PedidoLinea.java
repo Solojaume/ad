@@ -44,7 +44,7 @@ public class PedidoLinea {
 	}
 	@Override
 	public String toString() {
-		return "PedidoLinea [id=" + id  + ", articulo=" + articulo + ", unidades=" + unidades
+		return "PedidoLinea [id=" + id  + ", articulo=" + articulo.getNombre() + ", unidades=" + unidades
 				+ ", precio=" + precio + ", importe=" + importe  + "]";
 	}
 

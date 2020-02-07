@@ -56,26 +56,30 @@ private static Scanner tcl= new Scanner(System.in);
     			b=0;
     		
     	}
-    	BigDecimal importe= new BigDecimal("1");
     	
-    	pedido.setImporte(importe);
+    	
+    	pedido.setImporte(pedido.getImporte());
 		entityManager.getTransaction().begin();
     	entityManager.persist(pedido);	
     	entityManager.getTransaction().commit();
     	entityManager.close();
     }
     
-//    public static void edit(){
-//    	EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
-//    	System.out.println("Introduce id de la categoria a buscar");
-//		Long id=Long.parseLong(tcl.nextLine());
-//		Pedido pedido =  entityManager.find(Pedido.class, id);
-//		entityManager.getTransaction().begin();
-//    	System.out.println("Introduce el nuevo nombre:");
-//    	pedido.set(tcl.nextLine());
-//    	entityManager.getTransaction().commit();
-//    	entityManager.close();   
-//    }
+    public static void edit(){
+    	EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
+    	System.out.println("Introduce id de la categoria a buscar");
+		Long id=Long.parseLong(tcl.nextLine());
+		Pedido pedido =  entityManager.find(Pedido.class, id);
+		pedido.setFecha( LocalDateTime.now());
+		System.out.println("Introduce la id del cliente al que quieres asociar el pedido:");
+    	Cliente cli=entityManager.find(Cliente.class, Long.parseLong(tcl.nextLine()));
+    	pedido.setCliente(cli);
+    	pedido.setImporte(pedido.getImporte());
+		entityManager.getTransaction().begin();
+    	
+    	entityManager.getTransaction().commit();
+    	entityManager.close();   
+    }
     
     public static void show() {
     	Pedido categoria = search();
