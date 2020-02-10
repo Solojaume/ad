@@ -29,8 +29,7 @@ private static Scanner tcl= new Scanner(System.in);
     	List<Pedido> pedidos=getAll();
     	for (Pedido pedido : pedidos) {
 			System.out.printf("%3d %s %s %s %n", pedido.getId(), pedido.getFecha(),pedido.getCliente().getNombre(),pedido.getImporte().toString());
-    	    for (PedidoLinea linp:pedido.getPedidosLineas())
-    		System.out.println(linp);
+    	    PedidoLineaHelper.showAll(pedido);
     	}
     	
     }
@@ -67,13 +66,24 @@ private static Scanner tcl= new Scanner(System.in);
     
     public static void edit(){
     	EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
-    	System.out.println("Introduce id de la categoria a buscar");
+    	System.out.println("Introduce id de la pedido a buscar");
 		Long id=Long.parseLong(tcl.nextLine());
 		Pedido pedido =  entityManager.find(Pedido.class, id);
 		pedido.setFecha( LocalDateTime.now());
 		System.out.println("Introduce la id del cliente al que quieres asociar el pedido:");
     	Cliente cli=entityManager.find(Cliente.class, Long.parseLong(tcl.nextLine()));
     	pedido.setCliente(cli);
+    	System.out.println("Que quieres hacer?");
+    	System.out.println("1- Añadir");
+    	System.out.println("2-Eliminar");
+    	System.out.println();
+    	PedidoLineaHelper.showAll(pedido);
+    	int o=tcl.nextInt();
+    	if(o==1)
+    		PedidoLineaHelper.crear(pedido);
+    	if(o==2)
+    		PedidoLineaHelper.delete();
+    	
     	pedido.setImporte(pedido.getImporte());
 		entityManager.getTransaction().begin();
     	
@@ -82,8 +92,11 @@ private static Scanner tcl= new Scanner(System.in);
     }
     
     public static void show() {
-    	Pedido categoria = search();
-    	System.out.println(categoria);//Si en persistence.xml se le dice que hibernate muestre los comandos el los mostrara
+    	Pedido pedido = search();
+    	System.out.printf("%3d %s %s %s %n", pedido.getId(), pedido.getFecha(),pedido.getCliente().getNombre(),pedido.getImporte().toString());
+	    for (PedidoLinea linp:pedido.getPedidosLineas()) {
+	    	System.out.println("        "+linp);
+	    }//Si en persistence.xml se le dice que hibernate muestre los comandos el los mostrara
     	
     }
     
@@ -99,7 +112,7 @@ private static Scanner tcl= new Scanner(System.in);
     }
     
 	private static Pedido search() {
-		System.out.println("Introduce id de la categoria a buscar");
+		System.out.println("Introduce id de la pedido a buscar");
 		int b=Integer.parseInt(tcl.nextLine());
 		List<Pedido> pedidos=getAll();
 		Pedido pedido = new Pedido();

@@ -63,7 +63,6 @@ public class Pedido {
 	private void preGetImporte() {
 		importe = BigDecimal.ZERO;
 		for (PedidoLinea pedidoLinea : pedidoLinea) {
-			System.out.println(pedidoLinea);
 			importe = importe.add(pedidoLinea.getImporte());
 		}
 	}
