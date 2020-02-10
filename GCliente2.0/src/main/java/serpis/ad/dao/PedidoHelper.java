@@ -74,15 +74,16 @@ private static Scanner tcl= new Scanner(System.in);
     	Cliente cli=entityManager.find(Cliente.class, Long.parseLong(tcl.nextLine()));
     	pedido.setCliente(cli);
     	System.out.println("Que quieres hacer?");
-    	System.out.println("1- Añadir");
-    	System.out.println("2-Eliminar");
-    	System.out.println();
+    	System.out.println("1- Añadir Linea Pedido");
+    	System.out.println("2- Eliminar Linea Pedido");
+    	System.out.println("3- Volver al menu principal");
     	PedidoLineaHelper.showAll(pedido);
-    	int o=tcl.nextInt();
+    	int o=Integer.parseInt(tcl.nextLine());
     	if(o==1)
     		PedidoLineaHelper.crear(pedido);
-    	if(o==2)
+    	else if(o==2)
     		PedidoLineaHelper.delete();
+    	else;
     	
     	pedido.setImporte(pedido.getImporte());
 		entityManager.getTransaction().begin();
@@ -102,7 +103,7 @@ private static Scanner tcl= new Scanner(System.in);
     
     public static void delete() {	    
     	EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
-    	System.out.println("Introduce id de la categoria a buscar");
+    	System.out.println("Introduce id del pedido a buscar");
 		Long id=Long.parseLong(tcl.nextLine());
 		Pedido categoria=entityManager.find(Pedido.class, id);
     	entityManager.getTransaction().begin();

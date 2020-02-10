@@ -63,7 +63,7 @@ public class Main {
 				System.out.println("2-Ver todos");
 				System.out.println("3-Editar");
 				System.out.println("4-Ver uno");
-				System.out.println("5-Eliminar");
+//				System.out.println("5-Eliminar");
 
 				o=Integer.parseInt(tcl.nextLine());
 			  switch (o) {
