@@ -35,7 +35,7 @@ public class Main {
 				System.out.println("2-Ver todos");
 				System.out.println("3-Editar");
 				System.out.println("4-Ver uno");
-				System.out.println("5-Eliminar");
+//				System.out.println("5-Eliminar");
 
 				o=Integer.parseInt(tcl.nextLine());
 				switch (o) {
@@ -51,13 +51,13 @@ public class Main {
 				case 4:
 					ClienteHelper.show();
 					break;
-				case 5:
-					ClienteHelper.delete();
+//				case 5:
+//					ClienteHelper.delete();
 				default:
 					break;
 				}
 			}
-			else if(o==2) {
+			else if(o==2) {//Categoria
 				System.out.println("Selecciona la opción");
 				System.out.println("1-Insertar");
 				System.out.println("2-Ver todos");
@@ -79,19 +79,19 @@ public class Main {
 				case 4:
 					CategoriaHelper.show();
 					break;
-				case 5:
-					CategoriaHelper.delete();
+//				case 5:
+//					CategoriaHelper.delete();
 				default:
 					break;
 			  }
 			}
-			else if(o==3) {
+			else if(o==3) {//Articulo
 				System.out.println("Selecciona la opción");
 				System.out.println("1-Insertar");
 				System.out.println("2-Ver todos");
 				System.out.println("3-Editar");
 				System.out.println("4-Ver uno");
-				System.out.println("5-Eliminar");
+//				System.out.println("5-Eliminar");
 
 				o=Integer.parseInt(tcl.nextLine());
 			  switch (o) {
@@ -107,13 +107,13 @@ public class Main {
 				case 4:
 					ArticuloHelper.show();
 					break;
-				case 5:
-					ArticuloHelper.delete();
+//				case 5:
+//					ArticuloHelper.delete();
 				default:
 					break;
 			  }
 			}
-			else if(o==4) {
+			else if(o==4) {//Pedido
 				System.out.println("Selecciona la opción");
 				System.out.println("1-Insertar");
 				System.out.println("2-Ver todos");
