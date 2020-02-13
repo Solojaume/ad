@@ -105,9 +105,9 @@ private static Scanner tcl= new Scanner(System.in);
     	EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
     	System.out.println("Introduce id del pedido a buscar");
 		Long id=Long.parseLong(tcl.nextLine());
-		Pedido categoria=entityManager.find(Pedido.class, id);
+		Pedido pedido=entityManager.find(Pedido.class, id);
     	entityManager.getTransaction().begin();
-    	entityManager.remove(categoria);
+    	entityManager.remove(pedido);
     	entityManager.getTransaction().commit();
     	entityManager.close();
     }
